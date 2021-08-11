@@ -1,7 +1,12 @@
+import Header from "./components/common/Header";
+import SearchBar from "./components/search/SearchBar";
+import "./styles/main.css";
+
 function App() {
   return (
     <div className="App">
-      <h1>This is app</h1>
+      <Header />
+      <SearchBar />
     </div>
   );
 }
