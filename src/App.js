@@ -6,13 +6,13 @@ import SearchBar from "./components/search/SearchBar";
 import "./styles/main.css";
 
 function App() {
-  const [userInput, setUserInput] = useState("");
-  console.log(userInput);
+  const [callInput, setCallInput] = useState("");
+
   return (
     <div className="App">
       <Header />
-      <SearchBar userInput={userInput} setUserInput={setUserInput} />
-      <Home userInput={userInput} />
+      <SearchBar callInput={callInput} setCallInput={setCallInput} />
+      <Home callInput={callInput} />
     </div>
   );
 }
