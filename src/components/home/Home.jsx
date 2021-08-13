@@ -1,6 +1,6 @@
-import Loader from "./common/Loader";
+import Loader from "../common/Loader";
 import { useState, useEffect, useRef, useCallback } from "react";
-import Modal from "./common/Model";
+import Modal from "../common/Model";
 
 const Home = ({ callInput }) => {
   let [page, setPage] = useState(1);
@@ -42,7 +42,6 @@ const Home = ({ callInput }) => {
       threshold: 0,
     };
     const observer = new IntersectionObserver(handleObserver, option);
-    console.log();
     if (pageEnd.current) observer.observe(pageEnd.current);
   }, [handleObserver]);
 
@@ -57,7 +56,7 @@ const Home = ({ callInput }) => {
       <div className="container grid lg:grid-cols-3 gap-2 mx-auto mt-8 sm:grid-cols-1">
         {images.map((image) => {
           return (
-            <div class="w-full rounded hover:shadow-2xl">
+            <div className="w-full rounded hover:shadow-2xl" key={image.id}>
               <img
                 onClick={() =>
                   setModel(
@@ -65,7 +64,7 @@ const Home = ({ callInput }) => {
                   )
                 }
                 className="w-full h-full p-3"
-                key={image.id + image.secret}
+                key={image.id}
                 src={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_w.jpg`}
                 alt={image.title}
               />

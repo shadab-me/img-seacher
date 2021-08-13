@@ -34,16 +34,17 @@ const SearchBar = ({ callInput, setCallInput }) => {
             onFocus={() => setIsLastSearch(true)}
             onBlur={() => setIsLastSearch(false)}
             type="text"
-            className="p-2 placeholder-gray-600 rounded-md pr-6 text-black focus:outline-none w-1/4"
+            className="p-2 placeholder-gray-600 rounded-md pr-6 text-black focus:outline-none lg:w-1/4 sm:w-full"
             placeholder="Search"
           ></input>
-          <div className="w-1/4">
+          <div className="lg:w-1/4 sm:w-full">
             {isLastSearch ? (
               <div className="list text-center w-full">
                 <ul class="list-none md:list-none bg-white rounded-xl text-black w-full">
                   {allValues.map((search) => {
                     return (
                       <li
+                        key={search}
                         className="list-item p-2 text-blue-500 cursor-pointer"
                         onClick={() => {
                           setIsLastSearch(true);

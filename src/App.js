@@ -1,5 +1,5 @@
 import Header from "./components/common/Header";
-import Home from "./components/Home";
+import Home from "./components/home/Home";
 import { useState } from "react";
 import SearchBar from "./components/search/SearchBar";
 import "./styles/main.css";
