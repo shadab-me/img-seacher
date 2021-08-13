@@ -5,7 +5,6 @@ import Modal from "./common/Model";
 const Home = ({ callInput }) => {
   let [page, setPage] = useState(1);
   let [images, setImages] = useState([]);
-  let [loading, setLoading] = useState(false);
   let [model, setModel] = useState("");
   const pageEnd = useRef();
 
@@ -49,9 +48,9 @@ const Home = ({ callInput }) => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line
   }, [callInput, page]);
 
-  if (loading) return <Loader />;
   return (
     <div className="text-center">
       <Modal imageUrl={model} setModal={setModel} />
