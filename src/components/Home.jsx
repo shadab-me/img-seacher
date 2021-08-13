@@ -1,10 +1,12 @@
 import Loader from "./common/Loader";
 import { useState, useEffect, useRef, useCallback } from "react";
+import Modal from "./common/Model";
 
 const Home = ({ callInput }) => {
   let [page, setPage] = useState(1);
   let [images, setImages] = useState([]);
   let [loading, setLoading] = useState(false);
+  let [model, setModel] = useState("");
   const pageEnd = useRef();
 
   const fetchData = async () => {
@@ -51,12 +53,18 @@ const Home = ({ callInput }) => {
 
   if (loading) return <Loader />;
   return (
-    <div>
-      <div className="container grid grid-cols-3 gap-2 mx-auto mt-8 ">
+    <div className="text-center">
+      <Modal imageUrl={model} setModal={setModel} />
+      <div className="container grid lg:grid-cols-3 gap-2 mx-auto mt-8 sm:grid-cols-1">
         {images.map((image) => {
           return (
             <div class="w-full rounded hover:shadow-2xl">
               <img
+                onClick={() =>
+                  setModel(
+                    `https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_w.jpg`
+                  )
+                }
                 className="w-full h-full p-3"
                 key={image.id + image.secret}
                 src={`https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_w.jpg`}
