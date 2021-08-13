@@ -4,7 +4,7 @@ import "../../styles/loader.css";
 
 const Loader = () => {
   return (
-    <div className="flex h-screen justify-center items-center">
+    <div className="flex justify-center">
       <div className="spinner"></div>
     </div>
   );
