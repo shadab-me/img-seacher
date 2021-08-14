@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { debounce } from "lodash";
-import { setToStorage, getFromStorage } from "../../helper/storage";
+import {
+  setToStorage,
+  getFromStorage,
+  clearStorage,
+} from "../../helper/storage";
 
 const SearchBar = ({ callInput, setCallInput }) => {
   const [userInput, setUserInput] = useState("");
@@ -24,6 +28,18 @@ const SearchBar = ({ callInput, setCallInput }) => {
     }
   };
 
+  const blurHandler = (event) => {
+    const clickHandler = ({ target }) => {
+      if (target?.className?.split(" ").includes("list-items")) {
+        window.removeEventListener("click", clickHandler);
+      } else {
+        window.removeEventListener("click", clickHandler);
+        setIsLastSearch(false);
+      }
+    };
+    window.addEventListener("click", clickHandler);
+  };
+
   return (
     <>
       <div className="bg-blue-900 text-white font-medium text-center p-5 border-none pb-8">
@@ -32,7 +48,7 @@ const SearchBar = ({ callInput, setCallInput }) => {
             value={userInput}
             onChange={onChangeHandler}
             onFocus={() => setIsLastSearch(true)}
-            onBlur={() => setIsLastSearch(false)}
+            onBlur={() => blurHandler()}
             type="text"
             className="p-2 placeholder-gray-600 rounded-md pr-6 text-black focus:outline-none lg:w-1/4 sm:w-full"
             placeholder="Search"
@@ -56,6 +72,14 @@ const SearchBar = ({ callInput, setCallInput }) => {
                       </li>
                     );
                   })}
+                  {allValues.length ? (
+                    <i
+                      className="text-red-500 text-left cursor-pointer mb-2"
+                      onClick={() => clearStorage()}
+                    >
+                      Clear history
+                    </i>
+                  ) : null}
                 </ul>
               </div>
             ) : null}
